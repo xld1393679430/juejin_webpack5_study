@@ -1,0 +1,21 @@
+{
+  "name": "juejin_webpack5_study",
+  "version": "1.0.0",
+  "description": "[参考自《Webpack5 核心原理与应用实践》](https://juejin.cn/book/7115598540721618944)",
+  "main": "webpack.config.js",
+  "scripts": {
+    "start": "npx webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "7.19.1",
+    "@babel/preset-env": "7.19.1",
+    "babel-loader": "8.2.5"
+  },
+  "devDependencies": {
+    "webpack": "5.74.0",
+    "webpack-cli": "4.10.0"
+  }
+}
