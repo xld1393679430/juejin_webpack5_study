@@ -1,4 +1,4 @@
 import { createApp } from "vue";
 import App from "./App.vue";
 
-createApp(App).mount("#vue-ssr-root")
+createApp(App).mount("#root")

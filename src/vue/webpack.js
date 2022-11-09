@@ -1,8 +1,9 @@
 const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const { getStyleLoader, getEntry } = require('./src/lib')
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader");
+const { getStyleLoader, getEntry } = require('../../lib')
 
 module.exports = {
   entry: path.join(__dirname, getEntry()),
@@ -66,6 +67,10 @@ module.exports = {
         test: /\.less$/,
         use: [getStyleLoader(), "css-loader", "less-loader"],
       },
+      {
+        test: /\.vue$/,
+        use: ["vue-loader"], // 需要同时配置vue-loader和VueLoaderPlugin才能正常运行
+      },
     ],
   },
   resolve: {
@@ -74,8 +79,9 @@ module.exports = {
   plugins: [
     new ESLintPlugin({ extensions: [".js", ".ts"] }), // 添加 eslint-webpack-plugin 插件实例
     new MiniCssExtractPlugin(),
-    new HTMLWebpackPlugin({
-      template: path.join(__dirname, "./src", "index.html"),
+    new VueLoaderPlugin(),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, "./index.html"),
     }),
   ],
 };
