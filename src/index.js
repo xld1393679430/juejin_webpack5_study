@@ -1,5 +1,5 @@
-const add = (a, b) => a + b
+import add from "./add";
 
-const num = add(1, 2)
+const num = add(1, 2);
 
-console.log(num)
+console.log(num);
