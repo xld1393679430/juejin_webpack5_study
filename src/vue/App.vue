@@ -1,11 +1,13 @@
 <template>
   <div class="vue-container">
     <h2>我是vue</h2>
-    <p>{{ message }}</p>
+    <p class="message">{{ message }}</p>
   </div>
 </template>
 
-<script>
+<script lang="typescript">
+// type message = String;
+
 export default {
   data() {
     return { message: "Hello World" };
@@ -13,8 +15,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="less">
 .vue-container {
   color: red;
+  .message {
+    color: lightgreen;
+  }
 }
 </style>
