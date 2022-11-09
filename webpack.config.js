@@ -1,5 +1,9 @@
 const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HTMLWebpackPlugin = require("html-webpack-plugin");
+
+const isDev = process.env.NODE_ENV === "development";
 
 module.exports = {
   entry: "./src/index.js",
@@ -33,6 +37,10 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.css$/,
+        use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
+      },
     ],
   },
   resolve: {
@@ -40,5 +48,9 @@ module.exports = {
   },
   plugins: [
     new ESLintPlugin({ extensions: [".js", ".ts"] }), // 添加 eslint-webpack-plugin 插件实例
+    new MiniCssExtractPlugin(),
+    new HTMLWebpackPlugin({
+      template: path.join(__dirname, "./src", "index.html")
+    }),
   ],
 };
