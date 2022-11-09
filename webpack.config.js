@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 
 const isDev = process.env.NODE_ENV === "development";
+const getStyleLoader = () => isDev ? "style-loader" : MiniCssExtractPlugin.loader
 
 module.exports = {
   entry: "./src/index.js",
@@ -39,8 +40,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [isDev ? "style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
+        use: [getStyleLoader(), "css-loader"],
       },
+      {
+        test: /\.less$/,
+        use: [getStyleLoader(), "css-loader", "less-loader"]
+      }
     ],
   },
   resolve: {
