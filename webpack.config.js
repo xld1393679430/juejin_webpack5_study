@@ -2,6 +2,7 @@ const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader");
 
 const isDev = process.env.NODE_ENV === "development";
 const getStyleLoader = () => isDev ? "style-loader" : MiniCssExtractPlugin.loader
@@ -14,6 +15,10 @@ module.exports = {
   },
   mode: "development",
   devtool: false,
+  devServer: {
+    hot: true,
+    open: true,
+  },
   module: {
     rules: [
       {
@@ -63,6 +68,10 @@ module.exports = {
       {
         test: /\.less$/,
         use: [getStyleLoader(), "css-loader", "less-loader"]
+      },
+      {
+        test: /\.vue$/,
+        use: ["vue-loader"], // 需要同时配置vue-loader和VueLoaderPlugin才能正常运行
       }
     ],
   },
@@ -75,5 +84,6 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: path.join(__dirname, "./src", "index.html")
     }),
+    new VueLoaderPlugin(),
   ],
 };
