@@ -40,7 +40,25 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [getStyleLoader(), "css-loader"],
+        use: [
+          getStyleLoader(), 
+          {
+            loader: "css-loader", 
+            options: {
+              importLoaders: 1,
+            }
+          },
+          {
+            loader: "postcss-loader",
+            options: {
+              postcssOptions: {
+                plugins: [
+                  require("autoprefixer"), // 添加autoprefixer插件, 注意：需要在package.json添加browserslist或者添加.browserslistrc文件才生效。详情见https://www.jianshu.com/p/6f1b1e1c10db
+                ]
+              }
+            }
+          }
+        ],
       },
       {
         test: /\.less$/,
