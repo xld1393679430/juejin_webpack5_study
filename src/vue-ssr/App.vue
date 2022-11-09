@@ -1,11 +1,13 @@
 <template>
   <div class="vue-container">
-    <h2>vue</h2>
+    <h2>vue-ssr</h2>
     <p class="message">{{ message }}</p>
   </div>
 </template>
 
 <script lang="typescript">
+// type message = String;
+
 export default {
   data() {
     return { message: "Hello World" };

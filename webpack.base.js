@@ -2,13 +2,10 @@ const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const { VueLoaderPlugin } = require("vue-loader");
-
-const isDev = process.env.NODE_ENV === "development";
-const getStyleLoader = () => isDev ? "style-loader" : MiniCssExtractPlugin.loader
+const { getStyleLoader, getEntry } = require('./src/lib')
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: path.join(__dirname, getEntry()),
   output: {
     filename: "[name].js",
     path: path.join(__dirname, "./dist"),
@@ -46,12 +43,12 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          getStyleLoader(), 
+          getStyleLoader(),
           {
-            loader: "css-loader", 
+            loader: "css-loader",
             options: {
               importLoaders: 1,
-            }
+            },
           },
           {
             loader: "postcss-loader",
@@ -59,20 +56,16 @@ module.exports = {
               postcssOptions: {
                 plugins: [
                   require("autoprefixer"), // 添加autoprefixer插件, 注意：需要在package.json添加browserslist或者添加.browserslistrc文件才生效。详情见https://www.jianshu.com/p/6f1b1e1c10db
-                ]
-              }
-            }
-          }
+                ],
+              },
+            },
+          },
         ],
       },
       {
         test: /\.less$/,
-        use: [getStyleLoader(), "css-loader", "less-loader"]
+        use: [getStyleLoader(), "css-loader", "less-loader"],
       },
-      {
-        test: /\.vue$/,
-        use: ["vue-loader"], // 需要同时配置vue-loader和VueLoaderPlugin才能正常运行
-      }
     ],
   },
   resolve: {
@@ -82,8 +75,7 @@ module.exports = {
     new ESLintPlugin({ extensions: [".js", ".ts"] }), // 添加 eslint-webpack-plugin 插件实例
     new MiniCssExtractPlugin(),
     new HTMLWebpackPlugin({
-      template: path.join(__dirname, "./src", "index.html")
+      template: path.join(__dirname, "./src", "index.html"),
     }),
-    new VueLoaderPlugin(),
   ],
 };
