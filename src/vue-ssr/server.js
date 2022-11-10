@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const open = require('open');
 const { renderToString } = require("@vue/server-renderer");
 
 const clientManifest = require("./dist/manifest-client.json");
@@ -33,6 +34,8 @@ server.get("/", async (req, res) => {
 
 server.use(express.static(path.join(__dirname, "./dist")));
 
-server.listen(3000, function () {
-  console.log("ready");
+server.listen(8080, function () {
+  const url = "http://localhost:8080"
+  console.log(`start: ${url}`);
+  open(url)
 });

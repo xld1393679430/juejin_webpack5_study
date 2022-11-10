@@ -48,6 +48,10 @@ module.exports = {
         ],
       },
       {
+        test: /\.tsx$/,
+        use: "ts-loader",
+      },
+      {
         test: /\.css$/,
         use: [
           getStyleLoader(),
@@ -76,7 +80,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".ts", ".js"], // 使用 resolve.extensions 声明自动解析 .ts 后缀文件，这意味着代码如 import "./a.ts" 可以忽略后缀声明，简化为 import "./a" 文件
+    extensions: [".ts", ".tsx", ".js", ".jsx"], // 使用 resolve.extensions 声明自动解析 .ts 后缀文件，这意味着代码如 import "./a.ts" 可以忽略后缀声明，简化为 import "./a" 文件
   },
   plugins: [
     new ESLintPlugin({ extensions: [".js", ".ts"] }), // 添加 eslint-webpack-plugin 插件实例

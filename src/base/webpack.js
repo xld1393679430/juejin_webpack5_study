@@ -2,11 +2,10 @@ const path = require("path");
 const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { getStyleLoader, getEntry } = require('../../lib')
+const { getStyleLoader } = require("../../lib");
 
-console.log(__dirname, '---__dirname')
 module.exports = {
-  entry: path.join(__dirname, getEntry()),
+  entry: path.join(__dirname, "./index.js"),
   output: {
     filename: "[name].js",
     path: path.join(__dirname, "./dist"),

@@ -3,10 +3,10 @@ const ESLintPlugin = require("eslint-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { VueLoaderPlugin } = require("vue-loader");
-const { getStyleLoader, getEntry } = require('../../lib')
+const { getStyleLoader } = require("../../lib");
 
 module.exports = {
-  entry: path.join(__dirname, getEntry()),
+  entry: path.join(__dirname, "./index.js"),
   output: {
     filename: "[name].js",
     path: path.join(__dirname, "./dist"),
