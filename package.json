@@ -15,7 +15,8 @@
     "build:react-ssr-server": "webpack --config ./src/react-ssr/webpack.server.js --mode production",
     "build:react-ssr": "rm -rf ./src/react-ssr/dist && yarn build:react-ssr-client && yarn build:react-ssr-server",
     "start:react-ssr": "node ./src/react-ssr/dist/server",
-    "start:npm-library": "npx webpack --config ./src/npm-library/webpack.js"
+    "start:npm-library": "npx webpack --config ./src/npm-library/webpack.js",
+    "start:micro-app": "concurrently \"npx webpack server --config ./src/micro-app/app1/webpack.js\" \"npx webpack server --config ./src/micro-app/app2/webpack.js\""
   },
   "keywords": [],
   "author": "",
