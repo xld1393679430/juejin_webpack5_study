@@ -8,9 +8,13 @@
     "start:vue": "npx webpack server --config ./src/vue/webpack.js",
     "build:vue-ssr-client": "npx webpack --config ./src/vue-ssr/webpack.client.js --mode production",
     "build:vue-ssr-server": "npx webpack --config ./src/vue-ssr/webpack.server.js --mode production",
-    "build:vue-ssr": "concurrently \"yarn build:vue-ssr-client\" \"yarn build:vue-ssr-server\"",
+    "build:vue-ssr": "rm -rf ./src/vue-ssr/dist && yarn build:vue-ssr-client && yarn build:vue-ssr-server",
     "start:vue-ssr": "node ./src/vue-ssr/server.js --tips=执行start:vue-ssr前需要先执行build:vue-ssr",
-    "start:react": "npx webpack server --config ./src/react/webpack.js"
+    "start:react": "npx webpack server --config ./src/react/webpack.js",
+    "build:react-ssr-client": "webpack --config ./src/react-ssr/webpack.client.js --mode production",
+    "build:react-ssr-server": "webpack --config ./src/react-ssr/webpack.server.js --mode production",
+    "build:react-ssr": "rm -rf ./src/react-ssr/dist && yarn build:react-ssr-client && yarn build:react-ssr-server",
+    "start:react-ssr": "node ./src/react-ssr/dist/server"
   },
   "keywords": [],
   "author": "",
