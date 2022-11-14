@@ -78,6 +78,10 @@ module.exports = {
         use: [getStyleLoader(), "css-loader", "less-loader"],
       },
       {
+        test: /\.(png|jpg)$/,
+        type: "asset/resource",
+      },
+      {
         test: /\.svg$/,
         use: [
           {
