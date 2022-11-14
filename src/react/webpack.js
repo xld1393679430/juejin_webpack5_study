@@ -78,8 +78,13 @@ module.exports = {
         use: [getStyleLoader(), "css-loader", "less-loader"],
       },
       {
-        test: /\.(png|jpg)$/,
+        test: /\.(gif|png|jpe?g)$/i,
         type: "asset/resource",
+        use: [
+          {
+            loader: "image-webpack-loader",
+          }
+        ]
       },
       {
         test: /\.svg$/,
